@@ -1,0 +1,14 @@
+.navbar{
+    background-color: rgb(0, 0, 0,1);
+    position:fixed; top:0px; left:0px; right:0px;
+    z-index: 1;
+}
+
+.dropdown-menu{
+    background-color: rgb(0, 0, 0,1);
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+ }

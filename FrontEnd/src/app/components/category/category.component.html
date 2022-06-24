@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg navbar-dark" >
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Proje</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        
+        <li class="nav-item">
+          <a class="nav-link" href="#">Anasayfa</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Kategori
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li (click)="setCurrentCategory(category)" *ngFor="let category of categories" class="nav-item">
+              <a [class]="getCurrentCategoryClass(category)" routerLink="/products/category/{{category.categoryId}}">{{category.categoryName}}</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">İletişim</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <!--
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dil
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li class="nav-item">
+              <a (click)="changeLanguage('tr')" class="nav-link" role="button">Türkçe</a>
+              <a (click)="changeLanguage('en')" class="nav-link" role="button">English</a>
+            </li>
+          </ul>
+        </li>
+      -->
+      
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Giriş Yap</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/register">Kayıt Ol</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+<!--routerLink="/products/category/{{category.categoryId}}"-->
+<!--href="/products/category/{{category.categoryId}}"-->
+<!--
+  
+
+        <li (click)="setCurrentCategory(category)" *ngFor="let category of categories" class="nav-item">
+          <a [class]="getCurrentCategoryClass(category)" routerLink="/products/category/{{category.categoryId}}">{{category.categoryName}}</a>
+        </li>
+-->

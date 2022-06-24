@@ -1,0 +1,129 @@
+<br>
+<br>
+<br>
+
+<div class="container">
+<nav id="navbarProduct" class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" (click)="setVoteArea(0)">Günlük</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="setVoteArea(1)">Haftalık</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="setVoteArea(2)">Aylık</a>
+          </li>
+        </ul>
+
+        <form class="d-flex ">
+          <input id="search-box" class="form-control me-2" type="text" placeholder="Search" aria-label="Search" (keyup)="getValueFromSearchBox()">
+        </form>
+
+      </div>
+    </div>
+  </nav>
+
+<br>
+<table class="table table-dark table-striped">
+    <thead class="table-dark">
+        <tr>
+          <th scope="col">Kapanış</th>
+          <th scope="col">İsim</th>
+          <th scope="col" *ngIf="getVoteArea() == 0">Günlük</th>
+          <th scope="col" *ngIf="getVoteArea() == 1">Haftalık</th>
+          <th scope="col" *ngIf="getVoteArea() == 2">Aylık</th>
+
+          <th scope="col"></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <div *ngIf="dataLoaded==false" class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <tr *ngFor="let product of products" class="tablo">
+            <th scope="row">{{product.productId}}</th>
+            <td>{{product.productName}}</td>
+
+            <td>
+              <div class="voting-box" id="voting-box" [style]="getElectionBar(product)">
+              <div class="left" (click)="setLeftClick(product.productId , product.dailyUpVotes)">
+                <div class="text">
+                  <span class="option-size" id="size-one"></span>
+                  <p *ngIf="product.productId == leftClickId" style="font-size: large;"> {{getLeftClickValue()}}</p>
+                  <p *ngIf="product.productId != leftClickId && getVoteArea() == 0">{{product.dailyUpVotes}}</p>
+                  <p *ngIf="product.productId != leftClickId && getVoteArea() == 1">{{product.weeklyUpVotes}}</p>
+                  <p *ngIf="product.productId != leftClickId && getVoteArea() == 2">{{product.monthlyUpVotes}}</p>
+
+                  <br>
+                  <span class="option-title" id="option-one"></span>
+                </div>
+              </div>
+              <div class="right" (click)="setRightClick(product.productId, product.dailyDownVotes)">
+                <div class="text">
+                  <p *ngIf="product.productId == rightClickId" style="font-size: large;"> {{getRightClickValue()}}</p>
+                  <p *ngIf="product.productId != rightClickId && getVoteArea() == 0">{{product.dailyDownVotes}}</p>
+                  <p *ngIf="product.productId != rightClickId && getVoteArea() == 1">{{product.weeklyDownVotes}}</p>
+                  <p *ngIf="product.productId != rightClickId && getVoteArea() == 2">{{product.monthlyDownVotes}}</p>
+
+                  <span class="option-size" id="size-two"></span>
+                  <br>
+                  <span class="option-title" id="option-two"></span>
+                </div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div *ngIf="product.productId == leftClickId">
+              <button (click)="setVotingBoxNumber(product,'increase')" class="btn btn-dark" type="submit" style="font-size: large; background-color: #036AE3;">Kullan</button>
+            </div>
+            <div *ngIf="product.productId == rightClickId">
+              <button (click)="setVotingBoxNumber(product,'decrease')" class="btn btn-dark" type="submit" style="font-size: large; background-color: #036AE3;">Kullan</button>
+            </div>
+            <div *ngIf="product.productId != leftClickId && product.productId != rightClickId">
+              <button class="btn btn-dark" type="submit" disabled style="outline: 0; font-size: large">Kullan</button>
+            </div>
+          </td>
+
+        </tr>
+    </tbody>
+</table>
+
+</div>
+<!--
+<div class="container" id="voting-box">
+  <div class="left">
+    <div class="text">
+      <span class="option-size" id="size-one"></span>
+      <br>
+      <span class="option-title" id="option-one"></span>
+    </div>
+  </div>
+  <div class="right">
+    <div class="text">
+      <span class="option-size" id="size-two"></span>
+      <br>
+      <span class="option-title" id="option-two"></span>
+    </div>
+  </div>
+</div>
+-->
+
+
+<!--
+
+            <td>{{product.categoryId}}</td>
+            <td>{{product.unitPrice}}</td>
+            <td>{{product.unitsInStock}}</td>
+-->
